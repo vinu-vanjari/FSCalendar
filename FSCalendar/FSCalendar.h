@@ -118,6 +118,11 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 /**
+ Tells the delegate about any scroll offset changes
+ */
+- (void) calendar:(FSCalendar *)calendar scrollViewDidScroll:(UIScrollView *)scrollView;
+
+/**
  Asks the delegate whether the specific date is allowed to be selected by tapping.
  */
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition;
@@ -546,6 +551,14 @@ IB_DESIGNABLE
  @param sender A UIPanGestureRecognizer instance which controls the scope of the calendar
  */
 - (void)handleScopeGesture:(UIPanGestureRecognizer *)sender;
+
+/**
+ Scroll the Calendar to particular offset, this is helpful when you want to sync two or more calendars
+ 
+ @param offset scroll offset of Calendar scroll view
+ */
+- (void) scrollToOffset:(CGPoint) offset;
+
 
 @end
 

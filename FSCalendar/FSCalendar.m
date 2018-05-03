@@ -587,6 +587,19 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     [self.delegateProxy calendar:self willDisplayCell:(FSCalendarCell *)cell forDate:date atMonthPosition:monthPosition];
 }
 
+#pragma mark - Scroll offset
+
+- (void) scrollToOffset:(CGPoint) offset {
+    
+    if (self.collectionView.contentOffset.x == offset.x &&
+        self.collectionView.contentOffset.y == offset.y) {
+        return;
+    }
+    
+    self.collectionView.contentOffset = offset;
+    [self scrollViewDidScroll:self.collectionView];
+}
+
 #pragma mark - <UIScrollViewDelegate>
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -632,6 +645,10 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
         }
         _calendarHeaderView.scrollOffset = scrollOffset;
     }
+    
+    // inform delegate as well
+    [self.delegateProxy calendar:self scrollViewDidScroll:scrollView];
+    
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset

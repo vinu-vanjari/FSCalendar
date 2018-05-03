@@ -22,6 +22,7 @@ open class LunarFormatter: NSObject {
     }
     
     open func string(from date: Date) -> String {
+        
         let day = self.chineseCalendar.component(.day, from: date)
         if day != 1 {
             return self.lunarDays[day-2]
