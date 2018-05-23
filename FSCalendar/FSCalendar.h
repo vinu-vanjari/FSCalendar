@@ -559,7 +559,7 @@ IB_DESIGNABLE
  */
 - (void) scrollToOffset:(CGPoint) offset;
 
-
+- (void)scrollToPageForDate:(NSDate *)date animated:(BOOL)animated;
 @end
 
 
